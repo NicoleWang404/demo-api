@@ -1,12 +1,11 @@
 package com.example.demoapi.service;
 
 import com.example.demoapi.entities.Company;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.example.demoapi.entities.Employee;
 import com.example.demoapi.repository.CompanyRepository;
-
-import java.util.Collections;
+import com.example.demoapi.repository.EmployeeRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
@@ -15,7 +14,7 @@ public class CompanyService {
 
 
     private final CompanyRepository companyRepository;
-
+   private final EmployeeRepository employeeRepository;
 
     public List<Company> getAllCompanies() {
         return companyRepository.getAllCompanies();
@@ -35,10 +34,15 @@ public class CompanyService {
 
     public Company updateCompany(Integer id, Company company) {
         Company oldCompany = companyRepository.getCompanyById(id);
-        Company temp = companyRepository.getCompanyById(id);
-       temp.setCompanyName(company.getCompanyName().isEmpty() ? oldCompany.getCompanyName() : company.getCompanyName());
-        final var replaceAll = Collections.replaceAll(companyRepository.getAllCompanies(), oldCompany, temp);
-        return companyRepository.getCompanyById(id);
+       oldCompany.setCompanyName(company.getCompanyName().isEmpty() ? oldCompany.getCompanyName() : company.getCompanyName());
+        return oldCompany;
+    }
+
+    public Company addEmployeeToCompany(Integer companyId, Integer employeeId) {
+       Company company = companyRepository.getCompanyById(companyId);
+       Employee employee = employeeRepository.getEmployeeById(employeeId);
+       company.getEmployeeList().add(employee);
+        return company;
     }
 
 
