@@ -1,10 +1,9 @@
-package com.example.demoapi;
+package com.example.demoapi.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Employee {
@@ -12,4 +11,5 @@ public class Employee {
     private String name;
     private Integer age;
     private String gender;
+
 }
