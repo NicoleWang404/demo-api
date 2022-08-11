@@ -15,6 +15,13 @@ public class CompanyRepository {
     public CompanyRepository() {
         companyList.add(new Company(1, "AAA"));
         companyList.add(new Company(2, "BBB"));
+        companyList.add(new Company(3, "CCC"));
+        companyList.add(new Company(4, "EEE"));
+        companyList.add(new Company(5, "DDD"));
+        companyList.add(new Company(6, "FFF"));
+        companyList.add(new Company(7, "PPP"));
+        companyList.add(new Company(8, "LLL"));
+        companyList.add(new Company(9, "QQQ"));
     }
 
     public List<Company> getAllCompanies() {
@@ -36,7 +43,6 @@ public class CompanyRepository {
     public boolean deleteCompany(Integer id) {
         return companyList.remove(getCompanyById(id));
     }
-
 
 
 }
