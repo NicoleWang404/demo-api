@@ -29,7 +29,7 @@ class CompanyControllerTest {
     private CompanyRepository companyRepository;
 
     @Test
-    void test() throws Exception {
+    void should_company_show_by_page() throws Exception {
         Company company5 = companyRepository.getCompanyById(5);
         Company company6 = companyRepository.getCompanyById(6);
 

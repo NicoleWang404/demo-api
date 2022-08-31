@@ -31,11 +31,9 @@ public class CompanyController {
 
     public Company getCompany(@PathVariable(value = "id") Integer id) {
         return companyService.getCompanyById(id);
-
     }
 
-    @PutMapping(value = "/{id}")
-
+    @PutMapping(value = "/{id}") //id show 1-9 但逻辑上按照10-11
     public Company updateCompany(@PathVariable(value = "id") Integer id, @RequestBody Company company) {
         return companyService.updateCompany(id, company);
     }
