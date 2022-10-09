@@ -3,10 +3,7 @@ package com.example.demoapi.entities;
 import com.example.demoapi.dto.Gender;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -14,12 +11,26 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @Builder
 @Entity
-public class Employee {
+@Table(name = "employee")
+public class  Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private Integer age;
-    private Gender gender;
+    private String gender;
 
+//    private Integer companyId;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "companyId")
+    private Company company;
+
+
+    public Employee(Long id, String name, Integer age, String gender) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+    }
 }

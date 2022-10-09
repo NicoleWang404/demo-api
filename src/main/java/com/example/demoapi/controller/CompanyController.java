@@ -16,6 +16,7 @@ public class CompanyController {
 
     private final CompanyService companyService;
 
+
     @GetMapping
 
     public List<Company> getCompanies() {
@@ -23,8 +24,8 @@ public class CompanyController {
     }
 
     @PostMapping
-    public boolean addCompany(@RequestBody Company company) {
-        return companyService.createCompany(company); //post有请求体 get没有
+    public Company addCompany(@RequestBody Company company) {
+        return companyService.addCompany(company); //post有请求体 get没有
     }
 
     @GetMapping(value = "/{id}")

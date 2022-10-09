@@ -13,14 +13,14 @@ public class EmployeeRepository {
     Long id =0L;
     List<Employee> employeeList = new ArrayList<>();
 
-    public EmployeeRepository() {
-        employeeList.add(new Employee(1L, "aaa", 22, Gender.MALE));
-        employeeList.add(new Employee(2L, "ccc", 23, Gender.FEMALE));
-        employeeList.add(new Employee(3L, "qqq", 22, Gender.MALE));
-        employeeList.add(new Employee(4L, "z", 23, Gender.FEMALE));
-        employeeList.add(new Employee(5L, "a", 22, Gender.MALE));
-        employeeList.add(new Employee(6L, "g", 23, Gender.FEMALE));
-    }
+//    public EmployeeRepository() {
+//        employeeList.add(new Employee(1L, "aaa", 22, Gender.MALE));
+//        employeeList.add(new Employee(2L, "ccc", 23, Gender.FEMALE));
+//        employeeList.add(new Employee(3L, "qqq", 22, Gender.MALE));
+//        employeeList.add(new Employee(4L, "z", 23, Gender.FEMALE));
+//        employeeList.add(new Employee(5L, "a", 22, Gender.MALE));
+//        employeeList.add(new Employee(6L, "g", 23, Gender.FEMALE));
+//    }
 
     public List<Employee> getAllEmployee() {
         return employeeList;
