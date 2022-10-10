@@ -10,15 +10,15 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class CompanyDTO {
     @NotNull
     private String companyName;
     @NotNull
-    private Integer employeeNumber;
+    private Integer employeesNumber;
     @NotNull
     private List<Employee> employees;
+
 
 }

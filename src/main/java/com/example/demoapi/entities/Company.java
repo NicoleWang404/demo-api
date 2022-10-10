@@ -7,12 +7,11 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
+@Data
+@Builder
 @Table(name = "company")
 public class Company {
     @Id
@@ -24,12 +23,7 @@ public class Company {
     private Integer employeesNumber;
 
 
-    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Employee> employees = new ArrayList<>();
-    public Company(Integer id, String companyName) {
-    }
-
-    public List<Employee> getEmployeeList() {
-        return null;
-    }
+//    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Employee> employees;
 }

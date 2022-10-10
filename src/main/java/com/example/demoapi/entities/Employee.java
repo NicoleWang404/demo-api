@@ -1,36 +1,31 @@
 package com.example.demoapi.entities;
 
-import com.example.demoapi.dto.Gender;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
+@Data
+@Builder
 @Table(name = "employee")
-public class  Employee {
+public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
+
+    //    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "company_id", nullable = false)
+//    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(nullable = false)
+    @JsonIgnore
+    private Company company;
     private String name;
     private Integer age;
     private String gender;
 
-//    private Integer companyId;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "companyId")
-    private Company company;
-
-
-    public Employee(Long id, String name, Integer age, String gender) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.gender = gender;
-    }
 }
