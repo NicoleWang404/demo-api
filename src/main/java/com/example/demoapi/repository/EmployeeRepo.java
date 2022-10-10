@@ -8,8 +8,11 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface EmployeeRepo extends JpaRepository<Employee, Long> {
+public interface EmployeeRepo extends JpaRepository<Employee, Integer> {
     List<Employee> findAll(Specification<Employee> employeeSpecification);
 
     List<Employee> findAllByCompanyId(Integer companyId);
+
+    List<Employee> findAllByGender(String gender);
+
 }
