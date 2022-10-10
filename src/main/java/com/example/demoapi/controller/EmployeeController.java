@@ -55,7 +55,7 @@ public class EmployeeController {
         return employeeService.updateEmployee(id, employee);
     }
 
-    @GetMapping(value = "{gender}")
+    @GetMapping(value = "/male")
     public List<Employee> getEmployeeByGender(@PathVariable(value = "gender") String gender) {
         return  employeeService.getEmployeeByGender(gender);
     }
