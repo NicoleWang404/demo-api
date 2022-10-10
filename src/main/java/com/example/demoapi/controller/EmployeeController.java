@@ -6,6 +6,7 @@ import com.example.demoapi.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.List;
 // 1. use DTO instead of entity when transfer in controller
@@ -17,6 +18,8 @@ import java.util.List;
 @RequestMapping(value = "/employees")
 @RequiredArgsConstructor //给带final的变量构造函数
 public class EmployeeController {
+
+    @Resource
     private final EmployeeService employeeService;
 
     @GetMapping
@@ -25,10 +28,10 @@ public class EmployeeController {
         return employeeService.getAllEmployee();
     }
 
-    @PostMapping
-    public void addEmployee(@RequestBody Employee employee) {
-        employeeService.createEmployee(employee); //post有请求体 get没有
-    }
+//    @PostMapping
+//    public void addEmployee(@RequestBody Employee employee) {
+//        employeeService.createEmployee(employee); //post有请求体 get没有
+//    }
 
     @PostMapping("/add")
     public Employee createEmployee(@RequestBody @Valid EmployeeCreateDTO employeeCreateDTO){
@@ -37,14 +40,14 @@ public class EmployeeController {
 
     @GetMapping(value = "{id}")
 
-    public Employee getCompany(@PathVariable(value = "id") Integer id) {
+    public Employee getEmployeeById(@PathVariable(value = "id") Integer id) {
         return employeeService.getEmployeeById(id);
 
     }
 
     @DeleteMapping(value = "{id}")
-    public boolean deleteEmployee(@PathVariable(value = "id") Integer id) {
-        return employeeService.deleteEmployee(id);
+    public void deleteEmployee(@PathVariable(value = "id") Integer id) {
+         employeeService.deleteEmployee(id);
     }
 
     @PutMapping(value = "{id}")
@@ -53,7 +56,7 @@ public class EmployeeController {
     }
 
     @GetMapping(value = "{gender}")
-    public Employee getEmployeeByGender(@PathVariable(value = "gender") String gender) {
+    public List<Employee> getEmployeeByGender(@PathVariable(value = "gender") String gender) {
         return  employeeService.getEmployeeByGender(gender);
     }
 

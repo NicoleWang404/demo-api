@@ -3,7 +3,6 @@ package com.example.demoapi.service;
 import com.example.demoapi.dto.EmployeeCreateDTO;
 import com.example.demoapi.entities.Employee;
 import com.example.demoapi.repository.EmployeeRepo;
-import com.example.demoapi.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,16 +12,15 @@ import java.util.Objects;
 @Service
 @RequiredArgsConstructor
 public class EmployeeService {
-
-    private final EmployeeRepository employeeRepository;
+    
     private final EmployeeRepo employeeRepo;
 
     public List<Employee> getAllEmployee() {
-        return employeeRepository.getAllEmployee();
+        return employeeRepo.findAll();
     }
 
-    public boolean createEmployee(Employee employee) {
-        return employeeRepository.createEmployee(employee);
+    public Employee createEmployee(Employee employee) {
+        return employeeRepo.save(employee);
     }
 
     public Employee saveEmployee(EmployeeCreateDTO employeeCreateDTO){
@@ -34,23 +32,21 @@ public class EmployeeService {
     }
 
     public Employee getEmployeeById(Integer id) {
-        return employeeRepository.getEmployeeById(id);
+        return employeeRepo.findById(id).get();
     }
 
-    public boolean deleteEmployee(Integer id) {
-        return employeeRepository.deleteEmployee(id);
+    public void deleteEmployee(Integer id) {
+         employeeRepo.deleteById(id);
     }
+
+
 
     public Employee updateEmployee(Integer id, Employee employee) {
-        Employee oldEmployee = employeeRepository.getEmployeeById(id);
-        Employee temp = employeeRepository.getEmployeeById(id);
-        temp.setAge(employee.getAge() == null ? oldEmployee.getAge():employee.getAge());
-        temp.setGender(Objects.isNull(employee.getGender()) ? oldEmployee.getGender():employee.getGender());
-        temp.setName(employee.getName().isEmpty() ? oldEmployee.getName():employee.getName());
-        return employeeRepository.getEmployeeById(id);
+        employee.setId(id);
+        return employeeRepo.save(employee);
     }
-    public Employee getEmployeeByGender(String gender) {
-        return employeeRepository.getEmployeeByGender(gender);
+    public List<Employee> getEmployeeByGender(String gender) {
+        return employeeRepo.findAllByGender(gender);
     }
 
 }
