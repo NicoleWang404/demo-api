@@ -1,7 +1,7 @@
 package com.example.demoapi.controller;
 
 import com.example.demoapi.entities.Company;
-import com.example.demoapi.repository.CompanyRepository;
+import com.example.demoapi.repository.CompanyRepo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +26,14 @@ class CompanyControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
     @Autowired
-    private CompanyRepository companyRepository;
+    private CompanyRepo companyRepo;
 
     @Test
     void should_company_show_by_page() throws Exception {
-        Company company5 = companyRepository.getCompanyById(5);
-        Company company6 = companyRepository.getCompanyById(6);
+        Company company5 = companyRepo.findById(3).orElse(null);
+        Company company6 = companyRepo.findById(4).orElse(null);
 
-        mockMvc.perform(get("/companies/page/3/pageSize/2")
+        mockMvc.perform(get("/companies/page?page=1&size=2")
                 ).andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON)
