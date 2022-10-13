@@ -4,9 +4,9 @@ import com.example.demoapi.dto.EmployeeCreateDTO;
 import com.example.demoapi.entities.Employee;
 import com.example.demoapi.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.List;
 // 1. use DTO instead of entity when transfer in controller
@@ -19,10 +19,9 @@ import java.util.List;
 @RequiredArgsConstructor //给带final的变量构造函数
 public class EmployeeController {
 
-    @Resource
     private final EmployeeService employeeService;
 
-    @GetMapping
+    @GetMapping("/all")
 
     public List<Employee> getAllEmployee() {
         return employeeService.getAllEmployee();
@@ -54,9 +53,14 @@ public class EmployeeController {
     public Employee updateEmployee(@PathVariable(value = "id") Integer id, @RequestBody Employee employee) {
         return employeeService.updateEmployee(id, employee);
     }
+    @GetMapping("/page/{pageNumber}/pageSize/{pageSize}")
+    public Page<Employee> getEmployeeInfoByPage(@PathVariable Integer pageNumber, @PathVariable Integer pageSize) {
+        return employeeService.getCurrentPageEmployee(pageNumber,pageSize);
+    }
 
-    @GetMapping(value = "/male")
-    public List<Employee> getEmployeeByGender(@PathVariable(value = "gender") String gender) {
+    @GetMapping
+
+    public List<Employee> getEmployeeByGender(@RequestParam(value = "gender") String gender) {
         return  employeeService.getEmployeeByGender(gender);
     }
 
