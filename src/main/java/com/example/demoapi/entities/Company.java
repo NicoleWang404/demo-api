@@ -21,9 +21,8 @@ public class Company {
     private Integer id;
     private String companyName;
     private Integer employeesNumber;
+    private String  location;
 
-
-//    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<Employee> employees;
+    private List<Employee> employees =new ArrayList<>();
 }
