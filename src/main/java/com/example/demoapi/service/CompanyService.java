@@ -23,7 +23,6 @@ public class CompanyService {
     private final CompanyRepo companyRepo;
 
     public List<Company> getAllCompanies() {
-        companyRepo.saveAll()
         return companyRepo.findAll();
     }
 
